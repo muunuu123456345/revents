@@ -10,9 +10,9 @@ import { Menu, Container, Button } from 'semantic-ui-react'
                      <img src="assets/logo.png" alt="logo" />
                      Re-vents
                    </Menu.Item>
-                   <Menu.Item name="Events" />
+                   <Menu.Item name="Арга хэмжээ" />
                    <Menu.Item>
-                     <Button floated="right" positive inverted content="Create Event" />
+                     <Button floated="right" positive inverted content="Арга хэмжээ үүсгэх" />
                    </Menu.Item>
                    <Menu.Item position="right">
                      <Button basic inverted content="Нэвтрэх" />

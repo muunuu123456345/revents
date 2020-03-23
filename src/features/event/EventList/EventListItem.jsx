@@ -3,17 +3,19 @@ import { Segment, Item, Icon, List, Button } from 'semantic-ui-react'
 import EventListAttendee from './EventListAttendee'
 
 export default class EventListItem extends Component {
+  
     render() {
+      const {event} = this.props
         return (
                  <Segment.Group>
                     <Segment>
                       <Item.Group>
                         <Item>
-                          <Item.Image size="tiny" circular src="https://randomuser.me/api/portraits/women/42.jpg" />
+                          <Item.Image size="tiny" circular src={event.hostPhotoURL} />
                           <Item.Content>
-                            <Item.Header as="a">Event Title</Item.Header>
+                            <Item.Header as="a">{event.title}</Item.Header>
                             <Item.Description>
-                              Hosted by <a>hosted by</a>
+                              Hosted by <a>{event.hostedBy}</a>
                             </Item.Description>
                           </Item.Content>
                         </Item>
@@ -21,18 +23,21 @@ export default class EventListItem extends Component {
                     </Segment>
                     <Segment>
                       <span>
-                        <Icon name="clock" /> date |
-                        <Icon name="marker" /> time
+                        <Icon name="clock" /> {event.date} |
+                        <Icon name="marker" /> {event.venue}
                       </span>
                     </Segment>
                     <Segment secondary>
                       <List horizontal>
-                        <EventListAttendee />
+                        {event.attendees.map(attendee => (
+                            <EventListAttendee key={attendee.id} attendee={attendee} />
+                        ))}
+                       
                         
                       </List>
                     </Segment>
                     <Segment clearing>
-                        <span>Тайлбар</span>
+                        <span>{event.description}</span>
                       <Button as="a" color="teal" floated="right" content="View" />
                     </Segment>
                   </Segment.Group>
