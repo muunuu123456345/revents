@@ -2,30 +2,75 @@ import React, { Component } from "react";
 import { Segment, Form, Button } from "semantic-ui-react";
 
 export default class EventForm extends Component {
+  state = {
+    title: "",
+    date: "",
+    city: "",
+    venue: "",
+    hostedBy: ""
+  };
+  handleFormSubmit = evt => {
+    evt.preventDefault();
+    this.props.createEvent(this.state);
+  };
+
+  handleInputChange = ({ target: { name, value } }) => {
+    this.setState({
+      [name]: value
+    });
+  };
+
   render() {
     const { cancelFormOpen } = this.props;
+    const { title, date, city, venue, hostedBy } = this.state;
     return (
       <Segment>
-        <Form>
+        <Form onSubmit={this.handleFormSubmit} autoComplete='off'>
           <Form.Field>
             <label>Арга хэмжээний нэр</label>
-            <input placeholder='Арга хэмжээний нэр' />
+            <input
+              name='title'
+              onChange={this.handleInputChange}
+              value={title}
+              placeholder='Арга хэмжээний нэр'
+            />
           </Form.Field>
           <Form.Field>
             <label>Арга хэмжээ болох огноо</label>
-            <input type='date' placeholder='Арга хэмжээ болох огноо' />
+            <input
+              name='date'
+              onChange={this.handleInputChange}
+              value={date}
+              type='date'
+              placeholder='Арга хэмжээ болох огноо'
+            />
           </Form.Field>
           <Form.Field>
             <label>Хот</label>
-            <input placeholder='Хот' />
+            <input
+              name='city'
+              onChange={this.handleInputChange}
+              value={city}
+              placeholder='Хот'
+            />
           </Form.Field>
           <Form.Field>
             <label>Арга хэмжээ болох газар</label>
-            <input placeholder='Арга хэмжээ болох газрыг оруулна уу' />
+            <input
+              name='venue'
+              onChange={this.handleInputChange}
+              value={venue}
+              placeholder='Арга хэмжээ болох газрыг оруулна уу'
+            />
           </Form.Field>
           <Form.Field>
             <label>Оруулж буй хүн</label>
-            <input placeholder='Оруулж буй хүний нэрийг оруулна уу' />
+            <input
+              name='hostedBy'
+              onChange={this.handleInputChange}
+              value={hostedBy}
+              placeholder='Оруулж буй хүний нэрийг оруулна уу'
+            />
           </Form.Field>
           <Button positive type='submit'>
             Илгээх
